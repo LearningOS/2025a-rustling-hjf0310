@@ -129,7 +129,6 @@ where
 impl<T> Display for Node<T>
 where
     T: std::fmt::Display
-// I AM NOT DONEDisplay,
 {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         match self.next {

@@ -110,18 +110,36 @@ impl<'a, T> Iterator for IterMut<'a, T> {
 fn bracket_match(bracket: &str) -> bool {
     //TODO
     let mut s = Stack::new();
+   
     for i in bracket.chars(){
-		if i=='('||i=='{'||i=='['
+		if ((i=='(')||(i=='{')||(i=='['))
 		{
 			s.push(i);
 		}
-		else if i==')'||i=='}'||i==']'{
-			if i!=s.pop().unwrap(){
-				return false;
+		else if (i==')')||(i=='}')||(i==']'){
+			if i==')'{
+				if s.pop().unwrap()!='('{
+					return false;
+			}
+		}
+			else if i=='}'{
+				if s.pop().unwrap()!='{'{
+					return false;
+			}
+		}
+
+		 else if(s.is_empty()){
+			return false;
+		 }
+		 			else if i==']'{
+				if s.pop().unwrap()!='['{
+					return false;
 			}
 	     }
-}
-    s.is_empty()
+
+     }
+	}
+	 s.is_empty()
 }
 
 #[cfg(test)]
@@ -130,7 +148,7 @@ mod tests {
 
     #[test]
     fn bracket_matching_1() {
-        let s = "(2+3){func}[abc]";
+        let s = "(){}[]";
         assert_eq!(bracket_match(s), true);
     }
     #[test]
