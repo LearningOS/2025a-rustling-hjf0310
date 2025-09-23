@@ -62,5 +62,5 @@ mod tests {
             my_demo_function(123);
             my_demo_function_alias(456);
         }
-    }
+    }  
 }
