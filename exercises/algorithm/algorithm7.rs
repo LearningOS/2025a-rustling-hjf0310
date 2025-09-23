@@ -137,7 +137,7 @@ fn bracket_match(bracket: &str) -> bool {
 			}
 	     }
 
-     }
+     }  
 	}
 	 s.is_empty()
 }
